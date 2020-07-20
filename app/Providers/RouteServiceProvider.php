@@ -72,6 +72,7 @@ class RouteServiceProvider extends ServiceProvider
      */
     protected function mapApiRoutes()
     {
+        // remove the API prefix to use urls without '/API/'
         Route::prefix('api')
             ->middleware('api')
             ->namespace($this->namespace)
