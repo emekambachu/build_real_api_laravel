@@ -18,7 +18,7 @@ use Illuminate\Support\Facades\Route;
 Route::resource('buyers', 'BuyerController', ['only' => ['index', 'show']]);
 
 //Categories
-Route::resource('categories', 'CategoryController', ['except' => ['create', 'edit']]);
+Route::resource('categories', 'Category\CategoryController', ['except' => ['create', 'edit']]);
 
 //Products
 Route::resource('products', 'ProductController', ['only' => ['index', 'show']]);
@@ -28,6 +28,8 @@ Route::resource('sellers', 'SellerController', ['only' => ['index', 'show']]);
 
 //Transactions
 Route::resource('transactions', 'TransactionController', ['only' => ['index', 'show']]);
+
+Route::resource('transactions.categories', 'Transaction\TransactionCategoryController', ['only' => ['index']]);
 
 //Users
 Route::resource('users', 'UserController', ['except' => ['create', 'edit']]);
