@@ -1,24 +1,24 @@
 <?php
 
-namespace App\Http\Controllers\Transaction;
+namespace App\Http\Controllers\Category;
 
+use App\Category;
 use App\Http\Controllers\ApiController;
 use App\Http\Controllers\Controller;
-use App\Transaction;
 use Illuminate\Http\Request;
 
-class TransactionSellerController extends ApiController
+class CategoryProductController extends ApiController
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\JsonResponse
      */
-    public function index(Transaction $transaction)
+    public function index(Category $category)
     {
-        $seller = $transaction->product->seller;
+        $products = $category->products;
 
-        return $this->showOne($seller);
+        return $this->showAll($products);
     }
 
     /**
@@ -45,10 +45,10 @@ class TransactionSellerController extends ApiController
     /**
      * Display the specified resource.
      *
-     * @param  \App\Transaction  $transaction
+     * @param  \App\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function show(Transaction $transaction)
+    public function show(Category $category)
     {
         //
     }
@@ -56,10 +56,10 @@ class TransactionSellerController extends ApiController
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Transaction  $transaction
+     * @param  \App\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function edit(Transaction $transaction)
+    public function edit(Category $category)
     {
         //
     }
@@ -68,10 +68,10 @@ class TransactionSellerController extends ApiController
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Transaction  $transaction
+     * @param  \App\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Transaction $transaction)
+    public function update(Request $request, Category $category)
     {
         //
     }
@@ -79,10 +79,10 @@ class TransactionSellerController extends ApiController
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Transaction  $transaction
+     * @param  \App\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Transaction $transaction)
+    public function destroy(Category $category)
     {
         //
     }

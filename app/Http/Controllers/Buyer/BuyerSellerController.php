@@ -1,24 +1,28 @@
 <?php
 
-namespace App\Http\Controllers\Transaction;
+namespace App\Http\Controllers\Buyer;
 
+use App\Buyer;
 use App\Http\Controllers\ApiController;
 use App\Http\Controllers\Controller;
-use App\Transaction;
 use Illuminate\Http\Request;
 
-class TransactionSellerController extends ApiController
+class BuyerSellerController extends ApiController
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\JsonResponse
      */
-    public function index(Transaction $transaction)
+    public function index(Buyer $buyer)
     {
-        $seller = $transaction->product->seller;
+        $sellers = $buyer->transactions()->with('product.sellers')
+            ->get()
+            ->pluck('product.seller')
+            ->unique('id')
+            ->values();
 
-        return $this->showOne($seller);
+        return $this->showAll($sellers);
     }
 
     /**
@@ -45,10 +49,10 @@ class TransactionSellerController extends ApiController
     /**
      * Display the specified resource.
      *
-     * @param  \App\Transaction  $transaction
+     * @param  \App\Buyer  $buyer
      * @return \Illuminate\Http\Response
      */
-    public function show(Transaction $transaction)
+    public function show(Buyer $buyer)
     {
         //
     }
@@ -56,10 +60,10 @@ class TransactionSellerController extends ApiController
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Transaction  $transaction
+     * @param  \App\Buyer  $buyer
      * @return \Illuminate\Http\Response
      */
-    public function edit(Transaction $transaction)
+    public function edit(Buyer $buyer)
     {
         //
     }
@@ -68,10 +72,10 @@ class TransactionSellerController extends ApiController
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Transaction  $transaction
+     * @param  \App\Buyer  $buyer
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Transaction $transaction)
+    public function update(Request $request, Buyer $buyer)
     {
         //
     }
@@ -79,10 +83,10 @@ class TransactionSellerController extends ApiController
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Transaction  $transaction
+     * @param  \App\Buyer  $buyer
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Transaction $transaction)
+    public function destroy(Buyer $buyer)
     {
         //
     }
